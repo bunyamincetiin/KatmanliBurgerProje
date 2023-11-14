@@ -1,8 +1,9 @@
-﻿namespace KatmanliBurger_DATA.Concretes
+﻿using KatmanliBurger_DATA.Abstracts;
+
+namespace KatmanliBurger_DATA.Concretes
 {
-    public class BurgerGarniture
+    public class BurgerGarnitureMapping : BaseEntitiy
     {
-        public int Id { get; set; }
         public int BurgerId { get; set; }
         public int GarnitureId { get; set; }
 

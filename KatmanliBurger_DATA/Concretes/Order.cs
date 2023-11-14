@@ -12,8 +12,8 @@ namespace KatmanliBurger_DATA.Concretes
     {
         public string UserId { get; set; }
         public AppUser User { get; set; }
-        public virtual ICollection<BurgerOrder> BurgerOrders { get; set; }
-        public virtual ICollection<MenuOrder> MenuOrders { get; set; }
-        public virtual ICollection<OrderByProduct> OrderByProducts { get; set; }
+        public virtual ICollection<BurgerOrderMapping> BurgerOrders { get; set; }
+        public virtual ICollection<MenuOrderMapping> MenuOrders { get; set; }
+        public virtual ICollection<OrderByProductMapping> OrderByProducts { get; set; }
     }
 }

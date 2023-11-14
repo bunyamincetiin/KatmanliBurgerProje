@@ -14,8 +14,8 @@ namespace KatmanliBurger_DATA.Concretes
         public decimal Price { get; set; }
         public string? Image { get; set; }
         public int Piece { get; set; } = 1;
-        public virtual ICollection<BurgerMenu> BurgerMenus { get; set; }
-        public virtual ICollection<MenuOrder> MenuOrders { get; set; }
-        public virtual ICollection<MenuByProduct> MenuByProducts { get; set; }
+        public virtual ICollection<BurgerMenuMapping> BurgerMenus { get; set; }
+        public virtual ICollection<MenuOrderMapping> MenuOrders { get; set; }
+        public virtual ICollection<MenuByProductMapping> MenuByProducts { get; set; }
     }
 }

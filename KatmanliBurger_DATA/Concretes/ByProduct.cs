@@ -16,8 +16,8 @@ namespace KatmanliBurger_DATA.Concretes
         public string? Image { get; set; }
         public int CategoryId { get; set; }
         public Size Size { get; set; } = Size.Medium;
-        public virtual ICollection<MenuByProduct> MenuByProducts { get; set; }
-        public virtual ICollection<OrderByProduct> OrderByProducts { get; set; }
+        public virtual ICollection<MenuByProductMapping> MenuByProducts { get; set; }
+        public virtual ICollection<OrderByProductMapping> OrderByProducts { get; set; }
         public virtual Category Category { get; set; }
     }
 }

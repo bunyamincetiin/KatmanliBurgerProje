@@ -13,6 +13,6 @@ namespace KatmanliBurger_DATA.Concretes
         public string Name { get; set; }
 
         //Nav
-        public ICollection<BurgerGarniture> BurgerGarnitures { get; set; }
+        public ICollection<BurgerGarnitureMapping> BurgerGarnitures { get; set; }
     }
 }
