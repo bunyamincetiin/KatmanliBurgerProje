@@ -16,6 +16,23 @@ namespace KatmaniBurger_DAL.Concretes.EntityFramework
             }
         }
 
+        public void Delete(IEnumerable<BurgerGarnitureMapping> entities)
+        {
+            using (BurgerDbContext context = new BurgerDbContext())
+            {
+                context.BurgerGarnitures.RemoveRange(entities);
+                context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<BurgerGarnitureMapping> GetByBurgerId(int id)
+        {
+            using (BurgerDbContext context = new BurgerDbContext())
+            {
+                return context.BurgerGarnitures.Where(x=>x.BurgerId.Equals(id)).ToList();
+            }
+        }
+
         public void Update(IEnumerable<BurgerGarnitureMapping> entities)
         {
             using (BurgerDbContext context = new BurgerDbContext())

@@ -28,6 +28,7 @@ namespace KatmanliBurger_SERVICE.Services.BurgerService
 
         public void Update(Burger entity)
         {
+            entity.UpdatedDate = DateTime.Now;
             _burgerDal.Update(entity);
         }
 
@@ -35,6 +36,7 @@ namespace KatmanliBurger_SERVICE.Services.BurgerService
         {
             var burger = _burgerDal.GetById(id);
             burger.Status = burger.Status == Status.Active ? Status.Passive : Status.Active;
+            burger.UpdatedDate = DateTime.Now;
             _burgerDal.Update(burger);
 
         }

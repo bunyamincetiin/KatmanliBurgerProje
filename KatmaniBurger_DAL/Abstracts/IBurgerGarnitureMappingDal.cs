@@ -6,5 +6,7 @@ namespace KatmaniBurger_DAL.Abstracts
     {
         void Create(IEnumerable<BurgerGarnitureMapping> entities);
         void Update(IEnumerable<BurgerGarnitureMapping> entities);
+        void Delete(IEnumerable<BurgerGarnitureMapping> entities);
+        IEnumerable<BurgerGarnitureMapping> GetByBurgerId(int id);
     }
 }
