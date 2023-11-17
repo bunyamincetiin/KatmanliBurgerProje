@@ -1,9 +1,8 @@
-﻿using KatmaniBurger_DAL.Abstracts;
-using KatmaniBurger_DAL.Contexts;
+﻿using KatmanliBurger_DAL.Abstracts;
+using KatmanliBurger_DAL.Contexts;
 using KatmanliBurger_DATA.Concretes;
-using Microsoft.EntityFrameworkCore;
 
-namespace KatmaniBurger_DAL.Concretes.EntityFramework
+namespace KatmanliBurger_DAL.Concretes.EntityFramework
 {
     public class EfBurgerGarnitureMappingDal : EfBaseDal<BurgerGarnitureMapping, BurgerDbContext>, IBurgerGarnitureMappingDal
     {
@@ -16,20 +15,20 @@ namespace KatmaniBurger_DAL.Concretes.EntityFramework
             }
         }
 
-        public void Delete(IEnumerable<BurgerGarnitureMapping> entities)
-        {
-            using (BurgerDbContext context = new BurgerDbContext())
+		public void Delete(IEnumerable<BurgerGarnitureMapping> entities)
+		{
+            using (BurgerDbContext context=new BurgerDbContext())
             {
                 context.BurgerGarnitures.RemoveRange(entities);
                 context.SaveChanges();
             }
-        }
+		}
 
-        public IEnumerable<BurgerGarnitureMapping> GetByBurgerId(int id)
+		public IEnumerable<BurgerGarnitureMapping> GetByBurgerId(int id)
         {
             using (BurgerDbContext context = new BurgerDbContext())
             {
-                return context.BurgerGarnitures.Where(x=>x.BurgerId.Equals(id)).ToList();
+               return context.BurgerGarnitures.Where(x=>x.BurgerId== id).ToList();
             }
         }
 

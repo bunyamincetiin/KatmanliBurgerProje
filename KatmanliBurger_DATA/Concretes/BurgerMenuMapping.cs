@@ -2,8 +2,9 @@
 
 namespace KatmanliBurger_DATA.Concretes
 {
-    public class BurgerMenuMapping : BaseEntitiy
+    public class BurgerMenuMapping:BaseEntity
     {
+       
         public int BurgerId { get; set; }
         public int MenuId { get; set; }
 

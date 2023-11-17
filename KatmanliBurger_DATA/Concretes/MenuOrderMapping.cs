@@ -2,11 +2,11 @@
 
 namespace KatmanliBurger_DATA.Concretes
 {
-    public class MenuOrderMapping : BaseEntitiy
+    public class MenuOrderMapping : BaseEntity
     {
+      
         public int MenuId { get; set; }
         public int OrderId { get; set; }
-
 
         //nav
         public virtual Menu Menu { get; set; }

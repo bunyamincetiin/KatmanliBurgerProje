@@ -1,10 +1,10 @@
-﻿using KatmaniBurger_DAL.Abstracts;
-using KatmaniBurger_DAL.Contexts;
+﻿using KatmanliBurger_DAL.Abstracts;
+using KatmanliBurger_DAL.Contexts;
 using KatmanliBurger_DATA.Concretes;
 
-namespace KatmaniBurger_DAL.Concretes.EntityFramework
+namespace KatmanliBurger_DAL.Concretes.EntityFramework
 {
-    public class EfBurgerDal : EfBaseDal<Burger, BurgerDbContext>, IBurgerDal
+    public class EfBurgerDal: EfBaseDal<Burger, BurgerDbContext>, IBurgerDal
     {
     }
 }

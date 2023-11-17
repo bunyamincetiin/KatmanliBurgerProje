@@ -2,9 +2,11 @@
 
 namespace KatmanliBurger_DATA.Concretes
 {
-    public class Category : BaseEntitiy
+    public class Category:BaseEntity
     {
         public string Name { get; set; }
+
+        //nav
         public virtual ICollection<ByProduct> ByProducts { get; set; }
     }
 }

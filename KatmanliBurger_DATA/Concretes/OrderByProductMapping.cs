@@ -2,10 +2,11 @@
 
 namespace KatmanliBurger_DATA.Concretes
 {
-    public class OrderByProductMapping : BaseEntitiy
+    public class OrderByProductMapping : BaseEntity
     {
-        public int ByProductId { get; set; }
+      
         public int OrderId { get; set; }
+        public int ByProductId { get; set; }
 
         //nav
         public virtual Order Order { get; set; }

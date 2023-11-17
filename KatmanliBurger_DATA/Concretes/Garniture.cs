@@ -2,12 +2,12 @@
 
 namespace KatmanliBurger_DATA.Concretes
 {
-    public class Garniture : BaseEntitiy
+    public class Garniture:BaseEntity
     {
-       
         public string Name { get; set; }
 
-        //Nav
-        public ICollection<BurgerGarnitureMapping> BurgerGarnitures { get; set; }
+        //nav
+
+        public virtual ICollection<BurgerGarnitureMapping> BurgerGarnitures { get; set; }
     }
 }
