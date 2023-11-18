@@ -10,25 +10,112 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KatmanliBurger_UI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+		<nav class="navbar navbar-header navbar-expand-lg">
+			<div class="container-fluid">
+				<form class="navbar-left navbar-form nav-search mr-md-3" action="">
+					<div class="input-group">
+						<input type="text" placeholder="Arama..." class="form-control">
+						<div class="input-group-append">
+							<span class="input-group-text">
+								<i class="la la-search search-icon"></i>
+							</span>
+						</div>
+					</div>
+				</form>
+				<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+					<li class="nav-item dropdown hidden-caret">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="la la-envelope"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Gelen Mesajlar</a>
+							<a class="dropdown-item" href="#">Rezervasyonlar</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">İletişim</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown hidden-caret">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="la la-bell"></i>
+							<span class="notification">3</span>
+						</a>
+						<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
+							<li>
+								<div class="dropdown-title">4 Yeni Bildirim</div>
+							</li>
+							<li>
+								<div class="notif-center">
+									<a href="#">
+										<div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
+										<div class="notif-content">
+											<span class="block">
+												New user registered
+											</span>
+											<span class="time">5 minutes ago</span>
+										</div>
+									</a>
+									<a href="#">
+										<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
+										<div class="notif-content">
+											<span class="block">
+												Rahmad commented on Admin
+											</span>
+											<span class="time">12 minutes ago</span>
+										</div>
+									</a>
+									<a href="#">
+										<div class="notif-img">
+											<img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile2.jpg" alt="Img Profile">
+										</div>
+										<div class="notif-content">
+											<span class="block">
+												Reza send messages to you
+											</span>
+											<span class="time">12 minutes ago</span>
+										</div>
+									</a>
+									<a href="#">
+										<div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
+										<div class="notif-content">
+											<span class="block">
+												Farrah liked Admin
+											</span>
+											<span class="time">17 minutes ago</span>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li>
+								<a class="see-all" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="la la-angle-right"></i> </a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span>Hizrian</span></span> </a>
+						<ul class="dropdown-menu dropdown-user">
+							<li>
+								<div class="user-box">
+									<div class="u-img"><img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile.jpg" alt="user"></div>
+									<div class="u-text">
+										<h4>Admin</h4>
+										<p class="text-muted">Admin@admin.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">Menüyü Gör</a>
+									</div>
+								</div>
+							</li>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"><i class="ti-user"></i> Menü</a>
+							<a class="dropdown-item" href="#"></i> Ayarlar</a>
+							<a class="dropdown-item" href="#"><i class="ti-email"></i> Rezervasyonlar</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"><i class="ti-settings"></i> Dashboard</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Çıkış Yap</a>
+						</ul>
+						<!-- /.dropdown-user -->
+					</li>
+				</ul>
+			</div>
+		</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -36,9 +123,83 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer_section">
         <div class="container">
-            &copy; 2023 - KatmanliBurger_UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-4 footer-col">
+                    <div class="footer_contact">
+                        <h4>
+                            Contact Us
+                        </h4>
+                        <div class="contact_link_box">
+                            <a href="">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span>
+                                    Location
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>
+                                    Call +01 1234567890
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span>
+                                    demo@gmail.com
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <div class="footer_detail">
+                        <a href="" class="footer-logo">
+                            Feane
+                        </a>
+                        <p>
+                            Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+                        </p>
+                        <div class="footer_social">
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <h4>
+                        Opening Hours
+                    </h4>
+                    <p>
+                        Everyday
+                    </p>
+                    <p>
+                        10.00 Am -10.00 Pm
+                    </p>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>
+                    &copy; <span id="displayYear"></span> All Rights Reserved By
+                    <a href="https://html.design/">Free Html Templates</a><br><br>
+                    &copy; <span id="displayYear"></span> Distributed By
+                    <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+                </p>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

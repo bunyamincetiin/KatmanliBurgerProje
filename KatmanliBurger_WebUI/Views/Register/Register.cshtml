@@ -12,20 +12,25 @@
         transition: all 0.3s;
         border: none;
     }
+
+    .responsive {
+        width: 60%;
+        height: auto;
+    }
 </style>
-<div class="row text-white justify-content-center" style="background:#222831; height:1000px">
-    <div class="col-7" style="margin-top:75px">
-        <img src="~/feane-1.0.0/images/about-img.png" alt="" style="margin-left:10px">
+<div class="row text-white justify-content-center main-header fixed-top" style="background:#222831; height:1000px">
+    <div class="col-7" style="margin-top:30px"> 
+        <img src="~/feane-1.0.0/images/about-img.png" class="responsive" alt="" style="margin-left:100px">
     </div>
 
     <div class="col-5 ">
-        <div class="row " style="margin-top:150px">
-            <h2 style="font-family: 'Dancing Script';font-size: 60px;">
+        <div class="row " style="margin-top:40px">
+            <h2 style="font-family: 'Dancing Script';font-size: 30px;">
                 Katmanlı Burger
             </h2>
         </div>
         <div class="row">
-            <div class="col-md-10 mt-5">
+            <div class="col-md-10">
                 <form asp-action="Register">
                     <div class="row col-md-11">
 
@@ -72,8 +77,3 @@
     </div>
 </div>
 
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
