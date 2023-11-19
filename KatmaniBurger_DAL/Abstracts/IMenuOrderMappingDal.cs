@@ -8,10 +8,8 @@ namespace KatmanliBurger_DAL.Abstracts
     {
 		void Create(IEnumerable<MenuOrderMapping> entities);
 		void Update(IEnumerable<MenuOrderMapping> entities);
-
 		IEnumerable<MenuOrderMapping> GetByOrderId(int id);
 		IEnumerable<MenuOrderMapping> GetByMenuId(int id);
-		
 		void Delete(IEnumerable<MenuOrderMapping> entities);
 		IEnumerable<MenuOrderMapping> GetAll(Expression<Func<MenuOrderMapping, bool>> expression = null);
 	}

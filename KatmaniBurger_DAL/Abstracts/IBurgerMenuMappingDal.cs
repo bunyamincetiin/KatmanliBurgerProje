@@ -7,10 +7,8 @@ namespace KatmanliBurger_DAL.Abstracts
     {
 		void Create(IEnumerable<BurgerMenuMapping> entities);
 		void Update(IEnumerable<BurgerMenuMapping> entities);
-
 		IEnumerable<BurgerMenuMapping> GetByMenuId(int id);
 		IEnumerable<BurgerMenuMapping> GetByBurgerId(int id);
-		
 		void Delete(IEnumerable<BurgerMenuMapping> entities);
 		List<BurgerMenuMapping> GetBurgerNamesForMenu();
 	}

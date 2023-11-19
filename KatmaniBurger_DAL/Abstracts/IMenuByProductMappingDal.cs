@@ -8,10 +8,8 @@ namespace KatmanliBurger_DAL.Abstracts
     {
 		void Create(IEnumerable<MenuByProductMapping> entities);
 		void Update(IEnumerable<MenuByProductMapping> entities);
-
 		IEnumerable<MenuByProductMapping> GetByProductId(int id);
 		IEnumerable<MenuByProductMapping> GetByMenuId(int id);
-
 		void Delete(IEnumerable<MenuByProductMapping> entities);
 		IEnumerable<MenuByProductMapping> GetAll(Expression<Func<MenuByProductMapping, bool>> expression = null);
 		List<MenuByProductMapping> GetProductsForMenu();

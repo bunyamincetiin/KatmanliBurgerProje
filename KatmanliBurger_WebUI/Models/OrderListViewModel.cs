@@ -2,7 +2,7 @@
 
 namespace KatmanliBurger_UI.Models
 {
-    public class OrderListViewModel
+	public class OrderListViewModel
 	{
         public OrderListViewModel()
         {

@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using KatmanliBurger_DAL.Abstracts;
 using KatmanliBurger_DAL.Concretes.EntityFramework;
 using KatmanliBurger_DAL.Contexts;
@@ -9,13 +10,16 @@ using KatmanliBurger_SERVICE.Services.BurgerOrderMappingServices;
 using KatmanliBurger_SERVICE.Services.BurgerServices;
 using KatmanliBurger_SERVICE.Services.ByProductServices;
 using KatmanliBurger_SERVICE.Services.CategoryServices;
+using KatmanliBurger_SERVICE.Services.CustomerMessageServices;
 using KatmanliBurger_SERVICE.Services.GarnitureServices;
 using KatmanliBurger_SERVICE.Services.MenuByProductMappingServices;
 using KatmanliBurger_SERVICE.Services.MenuOrderMappingServices;
 using KatmanliBurger_SERVICE.Services.MenuServices;
 using KatmanliBurger_SERVICE.Services.OrderByProductMappingServices;
 using KatmanliBurger_SERVICE.Services.OrderServices;
+using KatmanliBurger_SERVICE.Services.ParameterServices;
 using KatmanliBurger_UI.Helpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 
@@ -26,6 +30,7 @@ namespace KatmanliBurger_UI
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
+
 			builder.Services.AddIdentity<AppUser, AppRole>(
 	 option =>
 	 {
@@ -37,8 +42,11 @@ namespace KatmanliBurger_UI
 	 }).AddEntityFrameworkStores<BurgerDbContext>().AddRoleManager<RoleManager<AppRole>>();
 
 			// Add services to the container.
-			builder.Services.AddControllersWithViews();
-			builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+			builder.Services.AddControllersWithViews().AddFluentValidation(option => option.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly())).ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = true);
+			//builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+			
+
 
 			builder.Services.AddDbContext<BurgerDbContext>();
 
@@ -80,13 +88,29 @@ namespace KatmanliBurger_UI
 			builder.Services.AddScoped<IOrderByProductMappingDal, EfOrderByProductMappingDal>();
 			builder.Services.AddScoped<IOrderByProductMappingService, OrderByProductMappingManager>();
 
+			builder.Services.AddScoped<ICustomerMessageDal, EfCustomerMessageDal>();
+			builder.Services.AddScoped<ICustomerMessageService, CustomerMessageManager>();
+
 			builder.Services.AddScoped<IBasketService, BasketManager>();
 
 			builder.Services.AddScoped<IBasketSessionHelper, BasketSessionHelper>();
 			builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+			builder.Services.AddScoped<IParameterDal, EfParameterDal>();
+			builder.Services.AddScoped<IParameterService, ParameterManager>();
+			builder.Services.AddScoped<IParameterSessionHelper, ParameterSessionHelper>();
+
 			builder.Services.AddSession();
 
-			builder.Services.AddAuthentication();
+			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+			{
+				options.LoginPath = "/Login/Index";
+				//options.AccessDeniedPath = "/Book/Index";
+
+			});
+
+
+			//builder.Services.AddAuthentication();
 			builder.Services.AddAuthorization();
 
 			var app = builder.Build();
@@ -98,7 +122,7 @@ namespace KatmanliBurger_UI
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-
+			app.UseStatusCodePagesWithRedirects("/Error/ErrorPage/?{0}");
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseSession();

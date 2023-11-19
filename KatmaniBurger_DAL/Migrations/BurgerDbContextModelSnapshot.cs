@@ -17,7 +17,7 @@ namespace KatmaniBurger_DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.25")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -330,6 +330,74 @@ namespace KatmaniBurger_DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4315),
+                            Name = "İçecek",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4317),
+                            Name = "Patates",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4318),
+                            Name = "Tatlı",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4319),
+                            Name = "Atıştırmalık",
+                            Status = 1
+                        });
+                });
+
+            modelBuilder.Entity("KatmanliBurger_DATA.Concretes.CustomerMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerMessages");
                 });
 
             modelBuilder.Entity("KatmanliBurger_DATA.Concretes.Garniture", b =>
@@ -471,6 +539,9 @@ namespace KatmaniBurger_DAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -521,6 +592,111 @@ namespace KatmaniBurger_DAL.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderByProducts");
+                });
+
+            modelBuilder.Entity("KatmanliBurger_DATA.DomainModels.ParameterDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ParameterTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParameterTypeId");
+
+                    b.ToTable("ParameterDetails");
+                });
+
+            modelBuilder.Entity("KatmanliBurger_DATA.DomainModels.ParameterType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ParameterTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4518),
+                            Status = 1,
+                            TypeName = "About"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4520),
+                            Status = 1,
+                            TypeName = "Contact"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4521),
+                            Status = 1,
+                            TypeName = "General"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4522),
+                            Status = 1,
+                            TypeName = "Exception"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4524),
+                            Status = 1,
+                            TypeName = "UIMessagges"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4525),
+                            Status = 1,
+                            TypeName = "AdminMessagges"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -765,6 +941,17 @@ namespace KatmaniBurger_DAL.Migrations
                     b.Navigation("Order");
                 });
 
+            modelBuilder.Entity("KatmanliBurger_DATA.DomainModels.ParameterDetail", b =>
+                {
+                    b.HasOne("KatmanliBurger_DATA.DomainModels.ParameterType", "ParameterType")
+                        .WithMany("ParameterDetails")
+                        .HasForeignKey("ParameterTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ParameterType");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("KatmanliBurger_DATA.Concretes.AppRole", null)
@@ -863,6 +1050,11 @@ namespace KatmaniBurger_DAL.Migrations
                     b.Navigation("MenuOrders");
 
                     b.Navigation("OrderByProducts");
+                });
+
+            modelBuilder.Entity("KatmanliBurger_DATA.DomainModels.ParameterType", b =>
+                {
+                    b.Navigation("ParameterDetails");
                 });
 #pragma warning restore 612, 618
         }

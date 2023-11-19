@@ -2,17 +2,17 @@
 
 namespace KatmanliBurger_UI.Extensions
 {
-    public static class SessionExtensionMethods
+	public static class SessionExtensionMethods
     {
-        public static void SetObject(this ISession session, string key, object value)  //key i sepet, value yu sepet datası olarak düşünebiliriz
+        public static void SetObject(this ISession session, string key, object value)
         {
-            string objectString = JsonConvert.SerializeObject(value); //objeyi string formata çeviriyoruz
-            session.SetString(key, objectString);
+            session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
         public static T GetObject<T>(this ISession session, string key) where T : class
         {
             string objectString = session.GetString(key);
+
             if (string.IsNullOrEmpty(objectString))
             {
                 return null;

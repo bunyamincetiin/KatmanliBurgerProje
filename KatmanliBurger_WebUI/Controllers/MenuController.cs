@@ -3,15 +3,18 @@ using KatmanliBurger_SERVICE.Services.BurgerGarnitureMappingServices;
 using KatmanliBurger_SERVICE.Services.BurgerMenuMappingServices;
 using KatmanliBurger_SERVICE.Services.BurgerServices;
 using KatmanliBurger_SERVICE.Services.ByProductServices;
+using KatmanliBurger_SERVICE.Services.DTOs;
 using KatmanliBurger_SERVICE.Services.GarnitureServices;
 using KatmanliBurger_SERVICE.Services.MenuByProductMappingServices;
 using KatmanliBurger_SERVICE.Services.MenuServices;
 using KatmanliBurger_UI.DTOs.MenuViewDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KatmanliBurger_UI.Controllers
 {
-    public class MenuController : Controller
+	[Authorize(Roles = "Admin")]
+	public class MenuController : Controller
     {
 		private readonly IBurgerService _burgerService;
 		private readonly IBurgerMenuMappingService _burgerMenuMappingService;
@@ -43,11 +46,11 @@ namespace KatmanliBurger_UI.Controllers
 			var burgers = _burgerService.GetAll();
 			var products = _byProductService.GetAll();
 
-			var tatlilar = products.Where(x => x.CategoryId == 2).ToList();
+			var tatlilar = products.Where(x => x.CategoryId == 3).ToList();
 
-			var citirlar = products.Where(x => x.CategoryId == 1).ToList();
+			var citirlar = products.Where(x => x.CategoryId == 2).ToList();
 
-			var icecekler = products.Where(x => x.CategoryId == 3).ToList();
+			var icecekler = products.Where(x => x.CategoryId == 1).ToList();
 
 			MenuCreateDto model = new();
 			model.Burgers = (List<Burger>)burgers;
@@ -74,7 +77,6 @@ namespace KatmanliBurger_UI.Controllers
 				foreach (var burgerId in selectedburgers)
 				{
 					menu.BurgerMenus.Add(new BurgerMenuMapping() { BurgerId = burgerId, MenuId = menu.Id });
-
 
 				}
 				_burgerMenuMappingService.Create(menu.BurgerMenus);
@@ -117,29 +119,18 @@ namespace KatmanliBurger_UI.Controllers
 
 		public IActionResult Update(int id)
 		{
-			var menu = _menuService.GetById(id);
-			var burgers = _burgerMenuMappingService.GetAll();
-
-			var products = menu.MenuByProducts.Where(x => x.Id == id);
-			var tatlilar = products.Where(x => x.ByProductId == 2).ToList();
-
-			var citirlar = products.Where(x => x.ByProductId == 1).ToList();
-
-			var icecekler = products.Where(x => x.ByProductId == 3).ToList();
-
-			menu.BurgerMenus = (ICollection<BurgerMenuMapping>)_burgerMenuMappingService.GetByMenuId(id);
-
-			//MenuUpdateDtos menuUpdateDtos = new MenuUpdateDtos()
-			//{
-			//	Burgers = (List<BurgerMenuMapping>)burgers,
-			//	Name = menu.Name,
-			//	Price = menu.Price,
-			//	Description = menu.Description,
-			//	Tatlilar = menu.MenuByProducts,
-			//	CıtırLezzetler = menu.citirlar,
-			//	Icecekler = menu.icecekler
-			//};
-
+			var model = _menuService.GetMenu(id);
+			return View(model);
+		}
+		[HttpPost]
+		public IActionResult Update(MenuDto dto, int id, int[] selectedburgers, int[] selectedcitilezzetler, int[] selectedicecekler, int[] selectedtatlilar)
+		{
+			_menuService.UpdateMenu(dto, id, selectedburgers, selectedcitilezzetler, selectedicecekler, selectedtatlilar);
+			return RedirectToAction("Index");
+		}
+		public IActionResult Delete(int id)
+		{
+			_menuService.UpdateStatus(id);
 			return RedirectToAction("Index");
 		}
 	}

@@ -8,7 +8,6 @@ namespace KatmanliBurger_DAL.Abstracts
     {
 		void Create(IEnumerable<OrderByProductMapping> entities);
 		void Update(IEnumerable<OrderByProductMapping> entities);
-
 		IEnumerable<OrderByProductMapping> GetByOrderId(int id);
 		IEnumerable<OrderByProductMapping> GetByProductId(int id);
 		void Delete(IEnumerable<OrderByProductMapping> entities);

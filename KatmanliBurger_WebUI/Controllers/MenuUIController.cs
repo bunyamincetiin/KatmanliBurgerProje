@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KatmanliBurger_SERVICE.Services.MenuServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KatmanliBurger_UI.Controllers
 {
 	public class MenuUIController : Controller
 	{
-		public IActionResult Index()
+		private readonly IMenuService _menuManager;
+
+		public MenuUIController(IMenuService menuManager)
 		{
-			return View();
+			_menuManager = menuManager;
+		}
+
+		public IActionResult Index(int id)
+		{
+			return View(_menuManager.GetMenu(id));
 		}
 	}
 }

@@ -7,6 +7,5 @@ namespace KatmanliBurger_DAL.Abstracts
     {
 		Order OrderWithDetails(int orderId);
 		List<Order> OrderWithDetailList(List<Order> orders);
-
 	}
 }

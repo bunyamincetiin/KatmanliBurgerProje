@@ -88,6 +88,25 @@ namespace KatmaniBurger_DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CustomerMessages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerMessages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Garnitures",
                 columns: table => new
                 {
@@ -121,6 +140,22 @@ namespace KatmaniBurger_DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ParameterTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParameterTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -237,6 +272,7 @@ namespace KatmaniBurger_DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false)
@@ -334,6 +370,30 @@ namespace KatmaniBurger_DAL.Migrations
                         name: "FK_BurgerMenus_Menus_MenuId",
                         column: x => x.MenuId,
                         principalTable: "Menus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ParameterDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ParameterTypeId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParameterDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ParameterDetails_ParameterTypes_ParameterTypeId",
+                        column: x => x.ParameterTypeId,
+                        principalTable: "ParameterTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -454,6 +514,30 @@ namespace KatmaniBurger_DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreatedDate", "Name", "Status", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4315), "İçecek", 1, null },
+                    { 2, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4317), "Patates", 1, null },
+                    { 3, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4318), "Tatlı", 1, null },
+                    { 4, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4319), "Atıştırmalık", 1, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ParameterTypes",
+                columns: new[] { "Id", "CreatedDate", "Status", "TypeName", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4518), 1, "About", null },
+                    { 2, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4520), 1, "Contact", null },
+                    { 3, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4521), 1, "General", null },
+                    { 4, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4522), 1, "Exception", null },
+                    { 5, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4524), 1, "UIMessagges", null },
+                    { 6, new DateTime(2023, 11, 19, 22, 33, 35, 930, DateTimeKind.Local).AddTicks(4525), 1, "AdminMessagges", null }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -562,6 +646,11 @@ namespace KatmaniBurger_DAL.Migrations
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParameterDetails_ParameterTypeId",
+                table: "ParameterDetails",
+                column: "ParameterTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -591,6 +680,9 @@ namespace KatmaniBurger_DAL.Migrations
                 name: "BurgerOrders");
 
             migrationBuilder.DropTable(
+                name: "CustomerMessages");
+
+            migrationBuilder.DropTable(
                 name: "MenuByProducts");
 
             migrationBuilder.DropTable(
@@ -598,6 +690,9 @@ namespace KatmaniBurger_DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderByProducts");
+
+            migrationBuilder.DropTable(
+                name: "ParameterDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -616,6 +711,9 @@ namespace KatmaniBurger_DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "ParameterTypes");
 
             migrationBuilder.DropTable(
                 name: "Categories");

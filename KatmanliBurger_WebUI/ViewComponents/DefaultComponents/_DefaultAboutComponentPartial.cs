@@ -1,13 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KatmanliBurger_UI.Helpers;
+using KatmanliBurger_UI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KatmanliBurger_UI.ViewComponents.DefaultComponents
 {
-    public class _DefaultAboutComponentPartial : ViewComponent
+	public class _DefaultAboutComponentPartial : ViewComponent
     {
-       
-        public IViewComponentResult Invoke()
+		private readonly IParameterSessionHelper _parameterSessionHelper;
+
+		public _DefaultAboutComponentPartial(IParameterSessionHelper parameterSessionHelper)
+		{
+			_parameterSessionHelper = parameterSessionHelper;
+		}
+
+		public IViewComponentResult Invoke()
         {
-            return View();
+			ParameterListViewModel model = new ParameterListViewModel() { ParameterDetails = _parameterSessionHelper.GetParameters("ParameterDetails") };
+			
+			return View(model);
         }
     }
 }

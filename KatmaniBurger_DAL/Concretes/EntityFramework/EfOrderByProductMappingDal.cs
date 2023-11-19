@@ -14,6 +14,7 @@ namespace KatmanliBurger_DAL.Concretes.EntityFramework
 				context.SaveChanges();
 			}
 		}
+
 		public void Delete(IEnumerable<OrderByProductMapping> entities)
 		{
 			using (BurgerDbContext context = new BurgerDbContext())
@@ -22,6 +23,7 @@ namespace KatmanliBurger_DAL.Concretes.EntityFramework
 				context.SaveChanges();
 			}
 		}
+
 		public IEnumerable<OrderByProductMapping> GetByOrderId(int id)
 		{
 			using (BurgerDbContext context = new BurgerDbContext())
@@ -37,6 +39,7 @@ namespace KatmanliBurger_DAL.Concretes.EntityFramework
 				return context.OrderByProducts.Where(x => x.ByProductId == id).ToList();
 			}
 		}
+
 		public void Update(IEnumerable<OrderByProductMapping> entities)
 		{
 			using (BurgerDbContext context = new BurgerDbContext())

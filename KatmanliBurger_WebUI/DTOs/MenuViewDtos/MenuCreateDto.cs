@@ -2,10 +2,8 @@
 
 namespace KatmanliBurger_UI.DTOs.MenuViewDtos
 {
-    public class MenuCreateDto
+	public class MenuCreateDto
 	{
-        
-
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
@@ -18,7 +16,6 @@ namespace KatmanliBurger_UI.DTOs.MenuViewDtos
         public ICollection<ByProduct> Tatlilar { get; set; }
         public ICollection<ByProduct> Icecekler { get; set; }
         public ICollection<ByProduct> CıtırLezzetler { get; set; }
-       
 
     }
 }

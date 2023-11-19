@@ -8,12 +8,12 @@ namespace KatmanliBurger_SERVICE.Services.BurgerMenuMappingServices
 	{
 		private readonly IBurgerMenuMappingDal _burgerMenuMappingDal;
 
-        public BurgerMenuMappingManager(IBurgerMenuMappingDal burgerMenuMappingDal)
-        {
-            _burgerMenuMappingDal = burgerMenuMappingDal;
-        }
+		public BurgerMenuMappingManager(IBurgerMenuMappingDal burgerMenuMappingDal)
+		{
+			_burgerMenuMappingDal = burgerMenuMappingDal;
+		}
 
-        public void Create(IEnumerable<BurgerMenuMapping> entities)
+		public void Create(IEnumerable<BurgerMenuMapping> entities)
 		{
 			_burgerMenuMappingDal.Create(entities);
 		}

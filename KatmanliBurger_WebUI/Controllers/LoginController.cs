@@ -36,7 +36,15 @@ namespace KatmanliBurger_UI.Controllers
 					Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(appUser, vm.Password, false, false);
 					if (signInResult.Succeeded)
 					{
-						return RedirectToAction("Index", "Default"); //Gideceği yer..
+
+						if (await _userManager.IsInRoleAsync(appUser, "Admin"))
+						{
+							return RedirectToAction("Index", "Category"); //Gideceği yer..
+						}
+						else
+						{
+							return RedirectToAction("Index", "Default"); //Gideceği yer..
+						}
 					}
 					ModelState.AddModelError("", "Wrong credantion information");
 				}

@@ -32,7 +32,6 @@ namespace KatmanliBurger_DAL.Concretes.EntityFramework
 					addedEntity.State = EntityState.Modified;
 					context.SaveChanges();
 				}
-
 			}
 		}
 
